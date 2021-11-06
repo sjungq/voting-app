@@ -14,6 +14,7 @@ app.prepare().then(() => {
 
   //express middleware
   server.use(express.json());
+  server.use(cors({ origin: `http://localhost:4000`, credentials: true }));
   server.get('/api/test', (req, res) => {
     const testJson = { id: 0, text: 'Monica' };
     res.json(testJson);
