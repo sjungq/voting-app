@@ -1,5 +1,5 @@
 module.exports = {
   env: {
-    PORT: 4000,
+    PORT: 80,
   },
 };
