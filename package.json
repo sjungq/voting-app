@@ -7,10 +7,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 3000",
+    "dev": "concurrently \"npm run server\" \"next -p 3000\"",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "nodemon server"
   },
+  "proxy": "http://localhost:4000",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sjungq/voting-app.git"
@@ -22,10 +24,15 @@
   },
   "homepage": "https://github.com/sjungq/voting-app#readme",
   "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "next": "^12.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0"
   }
 }
