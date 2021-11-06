@@ -1,24 +1,29 @@
 //External imports
+const next = require('next');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
+const dev = process.env.NODE_ENV !== 'production';
 
-const app = express();
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-//express middleware
-app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.prepare().then(() => {
+  const server = express();
 
-app.get('/api/test', (req, res) => {
-  const testJson = { id: 0, text: 'Monica' };
-  res.json(testJson);
-});
+  //express middleware
+  server.use(express.json());
+  server.get('/api/test', (req, res) => {
+    const testJson = { id: 0, text: 'Monica' };
+    res.json(testJson);
+  });
 
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
+  server.get('*', (req, res) => {
+    return handle(req, res);
+  });
 
-app.listen(process.env.EXPRESS_PORT, () => {
-  console.log(`Server started on ${process.env.EXPRESS_PORT}`);
+  server.listen(process.env.EXPRESS_PORT, () => {
+    console.log(`Server started on ${process.env.EXPRESS_PORT}`);
+  });
 });

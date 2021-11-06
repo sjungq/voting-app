@@ -7,12 +7,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"next -p 3000\"",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "concurrently \"npm run server\" \"next -p 3000\"",
+    "start": "NODE_ENV=production node server.js",
     "server": "nodemon server"
   },
-  "proxy": "http://localhost:4000",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sjungq/voting-app.git"
@@ -32,7 +31,5 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "devDependencies": {
-    "concurrently": "^6.3.0"
-  }
+  "devDependencies": {}
 }
