@@ -1,4 +1,5 @@
 import axios from 'axios';
+require('dotenv').config();
 const Index = ({ data }) => {
   return (
     <div>
@@ -10,7 +11,7 @@ const Index = ({ data }) => {
 };
 
 Index.getInitialProps = async () => {
-  const res = await axios.get('http://localhost:4000/api/test');
+  const res = await axios.get(`http://localhost:${PORT}/api/test`);
   return { data: res.data };
 };
 
