@@ -7,9 +7,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 4000",
+    "dev": "next -p 3000",
     "build": "next build",
-    "start": "node index.js"
+    "start": "next start"
   },
   "repository": {
     "type": "git",
