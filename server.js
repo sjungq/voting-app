@@ -23,7 +23,7 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server.listen(process.env.EXPRESS_PORT, () => {
-    console.log(`Server started on ${process.env.EXPRESS_PORT}`);
+  server.listen(process.env.PORT, () => {
+    console.log(`Server started on ${process.env.PORT}`);
   });
 });
