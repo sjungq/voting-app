@@ -11,7 +11,7 @@ const Index = ({ data }) => {
 };
 
 Index.getInitialProps = async () => {
-  const res = await axios.get(`http://localhost:${PORT}/api/test`);
+  const res = await axios.get(`http://localhost:${process.env.PORT}/api/test`);
   return { data: res.data };
 };
 
