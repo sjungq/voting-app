@@ -24,7 +24,10 @@ const seedDB = async () => {
     const rand = Math.floor(Math.random() * 5) + 2;
     let newOptions = [];
     for (let j = 0; j < rand; j++) {
-      newOptions.push({ optionText: sample(options), voteCount: 0 });
+      newOptions.push({
+        optionText: sample(options),
+        voteCount: Math.floor(Math.random() * 5),
+      });
     }
     const newPoll = new Poll({
       pollPrompt: prompts[i],
