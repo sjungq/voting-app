@@ -7,8 +7,9 @@ const cors = require('cors');
 require('dotenv').config();
 const dev = process.env.NODE_ENV !== 'production';
 
-//internal imports
+//Mongoose Schemas
 const Test = require('./api/models/Test');
+const Poll = require('./api/models/Poll');
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
