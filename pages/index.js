@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const Index = ({ data }) => {
+const Index = ({ polls }) => {
   return (
     <div>
       <p>Test</p>
-      <p>{data.id}</p>
-      <p>{data.text}</p>
+      <ul></ul>
     </div>
   );
 };
 
 Index.getInitialProps = async () => {
   const res = await axios.get(`https://voting-app-sj.herokuapp.com/api/test`);
-  return { data: res.data };
+  const { data } = res;
+  return { polls: data };
 };
 
 export default Index;

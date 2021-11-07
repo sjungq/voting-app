@@ -8,7 +8,6 @@ require('dotenv').config();
 const dev = process.env.NODE_ENV !== 'production';
 
 //Mongoose Schemas
-const Test = require('./api/models/Test');
 const Poll = require('./api/models/Poll');
 
 const app = next({ dev });
@@ -33,9 +32,8 @@ app.prepare().then(() => {
 
   //custom server stuff
   server.get('/api/test', async (req, res) => {
-    const testDoc = new Test({ id: 0, text: 'Monica' });
-    await testDoc.save();
-    res.json(testDoc);
+    const p = await Poll.find({});
+    res.json({ data: p });
   });
 
   server.get('*', (req, res) => {
