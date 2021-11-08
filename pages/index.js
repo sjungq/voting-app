@@ -1,19 +1,14 @@
 import axios from 'axios';
+import Palette from '../components/Palette';
+import PollForm from '../components/PollForm';
 
 const Index = ({ polls }) => {
+  const lol = () => console.log('hi!');
   return (
     <div>
       <div>
         {polls.map((poll) => (
-          <ul key={poll._id}>
-            <h3>{poll.pollPrompt}</h3>
-            {poll.pollOptions.map((option) => (
-              <li key={option._id}>
-                <span>{option.optionText}</span> -
-                <span> {option.voteCount} votes</span>
-              </li>
-            ))}
-          </ul>
+          <PollForm key={poll._id} poll={poll} registerResponse={lol} />
         ))}
       </div>
     </div>
