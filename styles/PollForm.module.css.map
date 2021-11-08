@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;CAYpB;;AAfD,AAKE,cALY,CAKZ,OAAO,CAAC;EACN,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,IAAI;CAClB",
+    "sources": [
+        "PollForm.module.scss"
+    ],
+    "names": [],
+    "file": "PollForm.module.css"
+}

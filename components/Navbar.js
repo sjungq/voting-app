@@ -4,17 +4,19 @@ import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
-      <AppBar position='static' color='primary'>
+      <AppBar position='sticky' color='primary'>
         <Toolbar>
           <Typography
-            variant='h6'
+            variant='h5'
             component='div'
             sx={{ flexGrow: 1 }}
             color='inherit'
           >
             StrawVote
           </Typography>
-          <Button color='inherit'>Login</Button>
+          <Button variant='contained' color='secondary'>
+            Create Poll
+          </Button>
         </Toolbar>
       </AppBar>
     </nav>
