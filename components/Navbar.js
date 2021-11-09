@@ -1,6 +1,6 @@
 import styles from '../styles/Navbar.module.css';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import Link from 'next/Link';
+import Link from 'next/link';
 const Navbar = () => {
   return (
     <nav className={styles.nav}>

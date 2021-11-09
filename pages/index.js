@@ -1,6 +1,6 @@
 import axios from 'axios';
 import PollForm from '../components/PollForm';
-import Link from 'next/Link';
+import Link from 'next/link';
 import { Container, Typography, Button, Box } from '@mui/material';
 import styles from '../styles/index.module.css';
 
