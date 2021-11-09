@@ -67,14 +67,19 @@ const NewPollForm = ({ addForm }) => {
           <Container sx={{ my: 3 }}>
             {optionList.map((option, index) => {
               return (
-                <TextField
-                  key={`option${index}`}
-                  label={`Option ${index + 1}`}
-                  variant='standard'
-                  value={option.optionText}
-                  onChange={(event) => handleInputChange(event, index)}
-                  fullWidth
-                />
+                <div key={`option${index}Container`}>
+                  <TextField
+                    key={`option${index}`}
+                    label={`Option ${index + 1}`}
+                    variant='standard'
+                    value={option.optionText}
+                    onChange={(event) => handleInputChange(event, index)}
+                    fullWidth
+                  />
+                  <Button onClick={handleRemoveClick} color='warning'>
+                    Delete
+                  </Button>
+                </div>
               );
             })}
             <Button onClick={handleAddClick} variant='outlined'>
