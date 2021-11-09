@@ -36,6 +36,15 @@ app.prepare().then(() => {
     res.json({ data: p });
   });
 
+  server.post('/api/create', async (req, res) => {
+    const newPoll = new Poll({
+      pollPrompt: req.body.body.pollPrompt,
+      pollOptions: req.body.body.pollOptions,
+    });
+    await newPoll.save();
+    res.json('success');
+  });
+
   server.get('*', (req, res) => {
     return handle(req, res);
   });

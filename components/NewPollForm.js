@@ -6,12 +6,27 @@ import {
   Button,
   Container,
 } from '@mui/material';
+import axios from 'axios';
 import styles from '../styles/NewPollForm.module.css';
+import { useState } from 'react';
 
-const NewPollForm = ({ poll, addForm }) => {
+const NewPollForm = ({ addForm }) => {
+  const [pollPrompt, setPollPrompt] = useState('');
   const handleSubmit = async (event) => {
     event.preventDefault();
-    addForm();
+    const res = await axios.post(`api/create`, {
+      body: {
+        pollPrompt: pollPrompt,
+        pollOptions: [
+          { optionText: 'test option 1', voteCount: 0 },
+          { optionText: 'test option 2', voteCount: 0 },
+        ],
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -22,11 +37,13 @@ const NewPollForm = ({ poll, addForm }) => {
           </Typography>
           <Container>
             <TextField
-              id='prompt-field'
+              id='promptField'
               label='Question'
               variant='outlined'
               fullWidth
               sx={{ mt: 5 }}
+              value={pollPrompt}
+              onInput={(e) => setPollPrompt(e.target.value)}
             />
           </Container>
           <Container sx={{ my: 3 }}>
