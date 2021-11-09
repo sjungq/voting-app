@@ -12,21 +12,39 @@ import { useState } from 'react';
 
 const NewPollForm = ({ addForm }) => {
   const [pollPrompt, setPollPrompt] = useState('');
+  const [optionList, setOptionList] = useState([
+    { optionText: '', voteCount: 0 },
+    { optionText: '', voteCount: 0 },
+  ]);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await axios.post(`api/create`, {
       body: {
         pollPrompt: pollPrompt,
-        pollOptions: [
-          { optionText: 'test option 1', voteCount: 0 },
-          { optionText: 'test option 2', voteCount: 0 },
-        ],
+        pollOptions: optionList,
       },
       headers: {
         'Content-Type': 'application/json',
       },
       method: 'POST',
     });
+  };
+
+  const handleAddClick = () => {
+    setOptionList([...optionList, { optionText: '', voteCount: 0 }]);
+  };
+
+  const handleRemoveClick = (index) => {
+    const list = [...optionList];
+    list.splice(index, 1);
+    setOptionList(list);
+  };
+
+  const handleInputChange = (event, index) => {
+    const { value } = event.target;
+    const list = [...optionList];
+    list[index]['optionText'] = value;
+    setOptionList(list);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -43,22 +61,25 @@ const NewPollForm = ({ addForm }) => {
               fullWidth
               sx={{ mt: 5 }}
               value={pollPrompt}
-              onInput={(e) => setPollPrompt(e.target.value)}
+              onInput={(event) => setPollPrompt(event.target.value)}
             />
           </Container>
           <Container sx={{ my: 3 }}>
-            <TextField
-              id='option1'
-              label='Option 1'
-              variant='standard'
-              fullWidth
-            />
-            <TextField
-              id='option2'
-              label='Option 2'
-              variant='standard'
-              fullWidth
-            />
+            {optionList.map((option, index) => {
+              return (
+                <TextField
+                  key={`option${index}`}
+                  label={`Option ${index + 1}`}
+                  variant='standard'
+                  value={option.optionText}
+                  onChange={(event) => handleInputChange(event, index)}
+                  fullWidth
+                />
+              );
+            })}
+            <Button onClick={handleAddClick} variant='outlined'>
+              Add New Option
+            </Button>
           </Container>
           <Button
             onClick={handleSubmit}
