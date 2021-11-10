@@ -9,8 +9,10 @@ import {
 import axios from 'axios';
 import styles from '../styles/NewPollForm.module.css';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const NewPollForm = ({ addForm }) => {
+  const router = useRouter();
   const [pollPrompt, setPollPrompt] = useState('');
   const [optionList, setOptionList] = useState([
     { optionText: '', voteCount: 0 },
@@ -18,16 +20,23 @@ const NewPollForm = ({ addForm }) => {
   ]);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await axios.post(`api/create`, {
-      body: {
-        pollPrompt: pollPrompt,
-        pollOptions: optionList,
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    try {
+      const res = await axios.post(`api/create`, {
+        body: {
+          pollPrompt: pollPrompt,
+          pollOptions: optionList,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+
+      //redirect to the page with newly created poll
+      router.push({ pathname: `/poll?postId=${res.data}` });
+    } catch (err) {
+      //need to do something here? form validation?
+    }
   };
 
   const handleAddClick = () => {
@@ -73,8 +82,9 @@ const NewPollForm = ({ addForm }) => {
                     label={`Option ${index + 1}`}
                     variant='standard'
                     value={option.optionText}
+                    sx={{ width: 1 }}
+                    autoFocus
                     onChange={(event) => handleInputChange(event, index)}
-                    fullWidth
                   />
                   <Button onClick={handleRemoveClick} color='warning'>
                     Delete
@@ -82,7 +92,7 @@ const NewPollForm = ({ addForm }) => {
                 </div>
               );
             })}
-            <Button onClick={handleAddClick} variant='outlined'>
+            <Button onClick={handleAddClick} sx={{ mt: 2 }} variant='contained'>
               Add New Option
             </Button>
           </Container>

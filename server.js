@@ -42,9 +42,27 @@ app.prepare().then(() => {
       pollOptions: req.body.body.pollOptions,
     });
     await newPoll.save();
-    res.json('success');
+    res.json(newPoll._id);
   });
 
+  server.get('/api/poll', async (req, res) => {
+    if (req.query.postId !== 'undefined') {
+      const foundPoll = await Poll.findById(req.query.postId);
+      res.json({ data: foundPoll });
+      //app.render(req, res, '/poll', { postId: req.params.postId });
+    } else {
+      app.render(req, res, '/');
+    }
+  });
+
+  // server.get('/poll/:postId', async (req, res) => {
+  //   const foundPoll = await Poll.findById(req.query.postId);
+  //   app.render(req, res, '/poll', { poll: foundPoll });
+  // });
+  // server.get('/poll', async (req, res) => {
+  //   const foundPoll = await Poll.findById(req.query.postId);
+  //   app.render(req, res, '/poll', { postId: req.params.postId });
+  // });
   server.get('*', (req, res) => {
     return handle(req, res);
   });
