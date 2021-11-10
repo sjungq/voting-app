@@ -47,11 +47,25 @@ app.prepare().then(() => {
 
   server.get('/api/poll', async (req, res) => {
     if (req.query.postId !== 'undefined') {
-      const foundPoll = await Poll.findById(req.query.postId);
+      const foundPoll = await Poll.findById(req.query.pollId);
       res.json({ data: foundPoll });
       //app.render(req, res, '/poll', { postId: req.params.postId });
     } else {
       app.render(req, res, '/');
+    }
+  });
+
+  //route to post to with ID; register vote
+  server.post('/api/poll', async (req, res) => {
+    try {
+      const { pollId, optionId } = req.body;
+      const foundPoll = await Poll.find({
+        _id: pollId,
+      });
+      //add the vote
+      res.json(foundPoll);
+    } catch (error) {
+      console.log(error);
     }
   });
 
