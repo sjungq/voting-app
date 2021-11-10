@@ -10,12 +10,15 @@ const PollPage = ({ poll }) => {
 };
 
 PollPage.getInitialProps = async ({ query }) => {
-  const res = await axios.get(
-    `https://voting-app-sj.herokuapp.com/api/poll?pollId=${query.pollId}`
-  );
-  const { data } = res;
-
-  return { ...query, poll: data.data };
+  try {
+    const res = await axios.get(
+      `https://voting-app-sj.herokuapp.com/api/poll?pollId=${query.pollId}`
+    );
+    const { data } = res;
+    return { ...query, poll: data.data };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // export async function getServerSideProps(context) {

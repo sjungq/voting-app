@@ -46,7 +46,6 @@ app.prepare().then(() => {
   });
 
   server.get('/api/poll', async (req, res) => {
-    console.log(req.query.pollId);
     if (req.query.pollId !== 'undefined') {
       const foundPoll = await Poll.findById(req.query.pollId);
       res.json({ data: foundPoll });

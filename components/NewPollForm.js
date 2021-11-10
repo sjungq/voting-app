@@ -33,7 +33,7 @@ const NewPollForm = ({ addForm }) => {
       });
 
       //redirect to the page with newly created poll
-      router.push({ pathname: `/poll?pollId=${res.data}` });
+      await router.push({ pathname: '/poll', query: { pollId: res.data } });
     } catch (err) {
       //need to do something here? form validation?
     }
