@@ -11,7 +11,7 @@ const PollPage = ({ poll }) => {
 
 PollPage.getInitialProps = async ({ query }) => {
   const res = await axios.get(
-    `https://voting-app-sj.herokuapp.com/api/poll?postId=${query.pollId}`
+    `https://voting-app-sj.herokuapp.com/api/poll?pollId=${query.pollId}`
   );
   const { data } = res;
 
