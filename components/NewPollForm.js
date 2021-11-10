@@ -70,6 +70,7 @@ const NewPollForm = ({ addForm }) => {
               fullWidth
               sx={{ mt: 5 }}
               value={pollPrompt}
+              autoFocus
               onInput={(event) => setPollPrompt(event.target.value)}
             />
           </Container>
@@ -83,7 +84,6 @@ const NewPollForm = ({ addForm }) => {
                     variant='standard'
                     value={option.optionText}
                     sx={{ width: 1 }}
-                    autoFocus
                     onChange={(event) => handleInputChange(event, index)}
                   />
                   <Button onClick={handleRemoveClick} color='warning'>
