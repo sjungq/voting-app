@@ -34,7 +34,7 @@ const NewPollForm = ({ addForm }) => {
 
       //redirect to the page with newly created poll
       await router.push({ pathname: '/poll', query: { pollId: res.data } });
-    } catch (err) {
+    } catch (error) {
       //need to do something here? form validation?
     }
   };
@@ -86,7 +86,11 @@ const NewPollForm = ({ addForm }) => {
                     sx={{ width: 1 }}
                     onChange={(event) => handleInputChange(event, index)}
                   />
-                  <Button onClick={handleRemoveClick} color='warning'>
+                  <Button
+                    onClick={handleRemoveClick}
+                    color='warning'
+                    tabIndex={-1}
+                  >
                     Delete
                   </Button>
                 </div>

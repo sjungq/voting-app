@@ -5,7 +5,6 @@ import { Container, Typography, Button, Box } from '@mui/material';
 import styles from '../styles/index.module.css';
 
 const Index = ({ polls }) => {
-  const lol = () => console.log('hi!');
   return (
     <div>
       <main>
@@ -34,7 +33,7 @@ const Index = ({ polls }) => {
         ) : (
           <Container>
             {polls.map((poll) => (
-              <PollForm key={poll._id} poll={poll} registerResponse={lol} />
+              <PollForm key={poll._id} poll={poll} />
             ))}
           </Container>
         )}

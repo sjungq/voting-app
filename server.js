@@ -57,14 +57,19 @@ app.prepare().then(() => {
   //route to post to with ID; register vote
   server.post('/api/poll', async (req, res) => {
     try {
-      const { pollId, optionId } = req.body;
-      const foundPoll = await Poll.find({
-        _id: pollId,
-      });
+      const { pollId, optionId } = req.body.body;
+      const foundPoll = await Poll.findOneAndUpdate(
+        {
+          _id: pollId,
+          pollOptions: { $elemMatch: { _id: optionId } },
+        },
+        { $inc: { 'pollOptions.$.voteCount': 1 } }
+      );
+
       //add the vote
       res.json(foundPoll);
     } catch (error) {
-      console.log(error);
+      res.send('Poll not found');
     }
   });
 

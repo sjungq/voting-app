@@ -3,7 +3,6 @@ import PollForm from '../components/PollForm';
 const PollPage = ({ poll }) => {
   return (
     <div>
-      <h1>Testing!</h1>
       <PollForm poll={poll} />
     </div>
   );
