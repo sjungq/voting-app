@@ -1,17 +1,5 @@
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Typography,
-  Paper,
-  Button,
-  Container,
-} from '@mui/material';
+import { Typography, Paper, Container } from '@mui/material';
 import styles from '../styles/PollForm.module.css';
-import axios from 'axios';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 
 const PollResults = ({ poll }) => {
   return (
