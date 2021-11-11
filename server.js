@@ -67,7 +67,7 @@ app.prepare().then(() => {
       );
 
       //add the vote
-      res.json(foundPoll);
+      res.json(foundPoll._id);
     } catch (error) {
       res.send('Poll not found');
     }

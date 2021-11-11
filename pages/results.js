@@ -1,14 +1,15 @@
 import axios from 'axios';
-import PollForm from '../components/PollForm';
-const PollPage = ({ poll }) => {
+import PollResults from '../components/PollResults';
+
+const ResultsPage = ({ poll }) => {
   return (
     <div>
-      <PollForm poll={poll} />
+      <PollResults poll={poll} />
     </div>
   );
 };
 
-PollPage.getInitialProps = async ({ query }) => {
+ResultsPage.getInitialProps = async ({ query }) => {
   try {
     const res = await axios.get(
       `https://voting-app-sj.herokuapp.com/api/poll?pollId=${query.pollId}`
@@ -19,4 +20,4 @@ PollPage.getInitialProps = async ({ query }) => {
     console.log(error);
   }
 };
-export default PollPage;
+export default ResultsPage;

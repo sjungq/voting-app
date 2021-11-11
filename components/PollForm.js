@@ -35,9 +35,7 @@ const PollForm = ({ poll, registerResponse }) => {
         },
         method: 'POST',
       });
-      console.log(res);
-
-      await router.push({ pathname: '/' });
+      await router.push({ pathname: '/results', query: { pollId: res.data } });
     } catch (error) {
       console.log(error);
     }
