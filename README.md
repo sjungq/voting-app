@@ -1,4 +1,4 @@
-#StrawVote
+# StrawVote
 
 Currently hosted on [Heroku](https://voting-app-sj.herokuapp.com/)
 
